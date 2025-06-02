@@ -1,0 +1,350 @@
+
+1. What is Express.js used for?
+A) Styling web pages
+B) Handling backend routing and middleware
+C) Database management
+D) Image optimization
+Answer: B) Handling backend routing and middleware
+
+2. Which of the following is a feature of Express.js?
+A) Built-in template engine
+B) Middleware support
+C) Native database integration
+D) Real-time communication
+Answer: B) Middleware support
+
+3. Which of the following is true about Node.js and Express.js?
+A) Express.js is an alternative to Node.js
+B) Node.js is built on Express.js
+C) Express.js is a framework built on top of Node.js
+D) Both are front-end technologies
+Answer: C) Express.js is a framework built on top of Node.js
+
+4. What file is commonly the entry point of an Express app?
+A) index.html
+B) server.js
+C) main.css
+D) config.js
+Answer: B) server.js
+
+5. What command is used to initialize a Node.js project?
+A) node init
+B) npm install
+C) npm init
+D) node start
+Answer: C) npm init
+
+6. What are dynamic routes in Express?
+A) Routes that load without JavaScript
+B) Routes that serve static files
+C) Routes that change based on parameters
+D) Routes written in HTML
+Answer: C) Routes that change based on parameters
+
+7. What are route parameters used for in Express?
+A) To serve CSS files
+B) To change route methods
+C) To capture values in the URL
+D) To validate POST data
+Answer: C) To capture values in the URL
+
+8. What does REST stand for?
+A) Ready External State Transfer
+B) Representational State Transfer
+C) Robust Endpoint State Transfer
+D) Remote External Synchronous Transfer
+Answer: B) Representational State Transfer
+
+9. Which HTTP method is used to update a resource?
+A) GET
+B) POST
+C) PUT
+D) DELETE
+Answer: C) PUT
+
+10. What is the purpose of middleware in Express?
+A) To write frontend code
+B) To handle requests and modify them
+C) To define templates
+D) To style HTML
+Answer: B) To handle requests and modify them
+
+11. What does `express.static` help serve?
+A) Database queries
+B) Static files like CSS, JS, and images
+C) React components
+D) API data
+Answer: B) Static files like CSS, JS, and images
+
+12. What does `try-catch` help with in Node.js?
+A) Optimize CSS
+B) Handle asynchronous operations
+C) Handle errors
+D) Read static files
+Answer: C) Handle errors
+
+13. What middleware can parse incoming request bodies?
+A) cookie-parser
+B) express-validator
+C) body-parser
+D) cors
+Answer: C) body-parser
+
+14. What is the purpose of `dotenv`?
+A) To serve HTML
+B) To install packages
+C) To manage environment variables
+D) To secure cookies
+Answer: C) To manage environment variables
+
+15. Which tool is used to test API endpoints?
+A) MongoDB Compass
+B) GitHub
+C) Postman
+D) Nodemon
+Answer: C) Postman
+
+16. What does API versioning help with?
+A) Increase response size
+B) Organize API changes
+C) Encrypt data
+D) Minify JS files
+Answer: B) Organize API changes
+
+17. What is the role of a JWT?
+A) Design UI
+B) Authenticate users
+C) Encrypt passwords
+D) Store sessions in a database
+Answer: B) Authenticate users
+
+18. What are the three parts of a JWT?
+A) URL, Method, Params
+B) Payload, Session, Header
+C) Header, Payload, Signature
+D) Request, Response, Middleware
+Answer: C) Header, Payload, Signature
+
+19. What is `jsonwebtoken` used for in Express?
+A) Sending emails
+B) Generating and verifying tokens
+C) Validating routes
+D) Parsing form data
+Answer: B) Generating and verifying tokens
+
+20. What is the purpose of MongoDB Atlas?
+A) Run Node apps
+B) Provide cloud-hosted MongoDB
+C) Create CSS animations
+D) Format JSON
+Answer: B) Provide cloud-hosted MongoDB
+
+21. What is BSON in MongoDB?
+A) Binary JSON format
+B) Backend Session Object Notation
+C) Built-in Storage Of Numbers
+D) Basic Script Of Node
+Answer: A) Binary JSON format
+
+22. What is schema-less design in MongoDB?
+A) Data must follow strict formats
+B) Allows documents with varying fields
+C) Each document has exactly 10 fields
+D) Uses SQL schemas
+Answer: B) Allows documents with varying fields
+
+23. Which method inserts a single document into MongoDB?
+A) insertMany()
+B) push()
+C) insertOne()
+D) save()
+Answer: C) insertOne()
+
+24. Which MongoDB method updates multiple documents?
+A) updateOne()
+B) updateAll()
+C) updateMany()
+D) replaceMany()
+Answer: C) updateMany()
+
+25. What does `limit()` do in a MongoDB query?
+A) Filters fields
+B) Limits the number of results
+C) Skips documents
+D) Projects fields
+Answer: B) Limits the number of results
+
+26. What is the purpose of indexing in MongoDB?
+A) Encrypting documents
+B) Speeding up queries
+C) Creating backups
+D) Validating data
+Answer: B) Speeding up queries
+
+27. What is a compound index?
+A) An index on one field
+B) An index on multiple fields
+C) A duplicate index
+D) A text index
+Answer: B) An index on multiple fields
+
+28. What is the use of `skip()` in MongoDB?
+A) Skip fields
+B) Skip collections
+C) Skip documents in result
+D) Skip indexes
+Answer: C) Skip documents in result
+
+29. How does `$or` work in MongoDB queries?
+A) Combines fields
+B) Performs text search
+C) Matches documents where at least one condition is true
+D) Limits results
+Answer: C) Matches documents where at least one condition is true
+
+30. What kind of middleware logs user actions?
+A) Auth middleware
+B) Static middleware
+C) Logging middleware
+D) Routing middleware
+Answer: C) Logging middleware
+
+31. What is the default port MongoDB runs on?
+A) 3000
+B) 27017
+C) 8080
+D) 5432
+Answer: B) 27017
+
+32. What does `res.status(404).send()` do?
+A) Sends HTML page
+B) Sets 404 response with a message
+C) Sends redirect
+D) Sends success message
+Answer: B) Sets 404 response with a message
+
+33. What is the use of `express.json()`?
+A) Read static files
+B) Parse URL params
+C) Parse JSON body
+D) Enable cookies
+Answer: C) Parse JSON body
+
+34. What is the best place to store secret keys in Node.js?
+A) public folder
+B) .env file
+C) app.js
+D) node_modules
+Answer: B) .env file
+
+35. What is the purpose of `express.Router()`?
+A) Start the server
+B) Connect to database
+C) Modular route handling
+D) Parse query strings
+Answer: C) Modular route handling
+
+36. What is a refresh token?
+A) Token for images
+B) New copy of old token
+C) Token used to renew access tokens
+D) Temporary login page
+Answer: C) Token used to renew access tokens
+
+37. What is the purpose of using `helmet` in Express?
+A) Serve HTML files
+B) Secure HTTP headers
+C) Log errors
+D) Parse cookies
+Answer: B) Secure HTTP headers
+
+38. How do you handle errors in Express middleware?
+A) Using `res.end()`
+B) Using try-catch only
+C) Using error-handling middleware with 4 arguments
+D) With setTimeout()
+Answer: C) Using error-handling middleware with 4 arguments
+
+39. What is the use of `rate-limit` middleware?
+A) Create session tokens
+B) Limit number of requests per user
+C) Refresh JWTs
+D) Add headers
+Answer: B) Limit number of requests per user
+
+40. What is the main benefit of using logical operators like `$and` or `$or` in MongoDB?
+A) Reduces performance
+B) Allows complex query conditions
+C) Increases document size
+D) Validates fields
+Answer: B) Allows complex query conditions
+
+41. Which method in MongoDB is used to retrieve only one document?
+A) findOne()
+B) find()
+C) selectOne()
+D) getOne()
+Answer: A) findOne()
+
+42. What is the purpose of Mongoose in a Node.js application?
+A) Web server
+B) MongoDB object modeling
+C) JSON parsing
+D) API testing
+Answer: B) MongoDB object modeling
+
+43. In Express.js, what does `next()` do in middleware?
+A) Ends the response
+B) Skips the current middleware
+C) Passes control to the next middleware
+D) Restarts the server
+Answer: C) Passes control to the next middleware
+
+44. How do you export a module in Node.js?
+A) export.module
+B) module.export
+C) exports.module
+D) module.exports
+Answer: D) module.exports
+
+45. What does CRUD stand for?
+A) Create, Read, Update, Delete
+B) Create, Run, Use, Deploy
+C) Check, Run, Update, Delete
+D) Collect, Read, Use, Distribute
+Answer: A) Create, Read, Update, Delete
+
+46. What is the use of the `body-parser` middleware?
+A) Parse cookies
+B) Parse request body
+C) Parse URL
+D) Parse response
+Answer: B) Parse request body
+
+47. What does `async/await` simplify in Node.js?
+A) CSS handling
+B) File inclusion
+C) Asynchronous code
+D) Package installation
+Answer: C) Asynchronous code
+
+48. Which operator is used in MongoDB to match values in an array?
+A) $in
+B) $eq
+C) $match
+D) $and
+Answer: A) $in
+
+49. What command is used to start a Node.js server?
+A) start server.js
+B) npm server.js
+C) node server.js
+D) run server.js
+Answer: C) node server.js
+
+50. How do you define a dynamic route in Express.js?
+A) app.get('/user', ...)
+B) app.get('/user/:id', ...)
+C) app.get('/user?id', ...)
+D) app.get('/user#id', ...)
+Answer: B) app.get('/user/:id', ...)

@@ -4,47 +4,91 @@ Modular routing helps you break your routes into multiple files for better maint
 
 ---
 
- 📁 Folder Structure
+Here’s how to refactor your JWT authentication setup into a modular folder structure using controllers, routes, and a separate `db.js` file for MongoDB connection.
 
+---
+
+📁 Final Folder Structuree
 
 student-api/
 │
-├── server.js
 ├── .env
 ├── package.json
-│
-├── /routes
-│   ├── authRoutes.js
-│   └── studentRoutes.js
+├── server.js
+├── db.js
 │
 ├── /models
-│   ├── User.js
-│   └── Student.js
+│   └── User.js
 │
 ├── /middleware
 │   └── authMiddleware.js
+│
+├── /controllers
+│   └── authController.js
+│
+├── /routes
+│   └── authRoutes.js
 
 
 ---
 
- 🔍 12.1 What is Router?
-
-`express.Router()` is a mini Express app. It allows you to define route handlers in separate modules and mount them under a base path.
-
----
-
- ⚙️ 12.2 Creating and Using Routers
-
- 👉 Create `routes/authRoutes.js`
+🔌 `db.js` – MongoDB Connection
 
 js
-const express = require('express');
+// db.js
+const mongoose = require('mongoose');
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('MongoDB connected');
+  } catch (err) {
+    console.error('MongoDB connection error:', err.message);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+
+
+---
+
+🔐 `models/User.js`
+
+(Same as before)
+
+js
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true, trim: true },
+  password: { type: String, required: true }
+});
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+userSchema.methods.comparePassword = function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
+};
+
+module.exports = mongoose.model('User', userSchema);
+
+
+---
+
+🧠 `controllers/authController.js`
+
+js
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const router = express.Router();
 
-// Register
-router.post('/register', async (req, res, next) => {
+exports.register = async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const existing = await User.findOne({ username });
@@ -52,14 +96,14 @@ router.post('/register', async (req, res, next) => {
 
     const user = new User({ username, password });
     await user.save();
+
     res.status(201).json({ message: 'User registered successfully' });
   } catch (err) {
     next(err);
   }
-});
+};
 
-// Login
-router.post('/login', async (req, res, next) => {
+exports.login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
@@ -77,57 +121,62 @@ router.post('/login', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+};
 
-module.exports = router;
+exports.dashboard = (req, res) => {
+  res.json({ message: `Welcome, ${req.user.username}` });
+};
 
 
 ---
 
- 👉 Create `routes/studentRoutes.js`
+🔐 `middleware/authMiddleware.js`
+
+js
+const jwt = require('jsonwebtoken');
+
+const authenticate = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', '');
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+module.exports = authenticate;
+
+
+---
+
+🔁 `routes/authRoutes.js`
 
 js
 const express = require('express');
-const authenticate = require('../middleware/authMiddleware');
-const Student = require('../models/Student');
-
 const router = express.Router();
+const { register, login, dashboard } = require('../controllers/authController');
+const authenticate = require('../middleware/authMiddleware');
 
-// Protected route: Get students
-router.get('/', authenticate, async (req, res, next) => {
-  try {
-    const students = await Student.find();
-    res.json(students);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Add student
-router.post('/', authenticate, async (req, res, next) => {
-  try {
-    const { name, course } = req.body;
-    const newStudent = new Student({ name, course });
-    await newStudent.save();
-    res.status(201).json(newStudent);
-  } catch (err) {
-    next(err);
-  }
-});
+router.post('/register', register);
+router.post('/login', login);
+router.get('/dashboard', authenticate, dashboard);
 
 module.exports = router;
 
 
 ---
 
- 🧩 12.3 Use Routes in `server.js`
+🚀 `server.js`
 
 js
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
+const connectDB = require('./db');
 const authRoutes = require('./routes/authRoutes');
-const studentRoutes = require('./routes/studentRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -136,41 +185,23 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // DB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+connectDB();
 
-// Use Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/students', studentRoutes);
+// Routes
+app.use('/auth', authRoutes);
 
 // 404
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-// Error Middleware
+// Error Handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong' });
+  console.error(err.message);
+  res.status(500).json({ error: 'Server error' });
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
-
-
----
-
- ✅ Example API Usage
-
- `POST /api/auth/register`
- `POST /api/auth/login`
- `GET /api/students` (protected)
- `POST /api/students` (protected)
-
-> Important: Use the Bearer token returned from `/login` in the header for protected routes:
-
-
-Authorization: Bearer <token>
 

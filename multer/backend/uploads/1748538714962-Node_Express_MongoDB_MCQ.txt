@@ -1,0 +1,70 @@
+
+41. Which method in MongoDB is used to retrieve only one document?
+A) findOne()
+B) find()
+C) selectOne()
+D) getOne()
+Answer: A) findOne()
+
+42. What is the purpose of Mongoose in a Node.js application?
+A) Web server
+B) MongoDB object modeling
+C) JSON parsing
+D) API testing
+Answer: B) MongoDB object modeling
+
+43. In Express.js, what does `next()` do in middleware?
+A) Ends the response
+B) Skips the current middleware
+C) Passes control to the next middleware
+D) Restarts the server
+Answer: C) Passes control to the next middleware
+
+44. How do you export a module in Node.js?
+A) export.module
+B) module.export
+C) exports.module
+D) module.exports
+Answer: D) module.exports
+
+45. What does CRUD stand for?
+A) Create, Read, Update, Delete
+B) Create, Run, Use, Deploy
+C) Check, Run, Update, Delete
+D) Collect, Read, Use, Distribute
+Answer: A) Create, Read, Update, Delete
+
+46. What is the use of the `body-parser` middleware?
+A) Parse cookies
+B) Parse request body
+C) Parse URL
+D) Parse response
+Answer: B) Parse request body
+
+47. What does `async/await` simplify in Node.js?
+A) CSS handling
+B) File inclusion
+C) Asynchronous code
+D) Package installation
+Answer: C) Asynchronous code
+
+48. Which operator is used in MongoDB to match values in an array?
+A) $in
+B) $eq
+C) $match
+D) $and
+Answer: A) $in
+
+49. What command is used to start a Node.js server?
+A) start server.js
+B) npm server.js
+C) node server.js
+D) run server.js
+Answer: C) node server.js
+
+50. How do you define a dynamic route in Express.js?
+A) app.get('/user', ...)
+B) app.get('/user/:id', ...)
+C) app.get('/user?id', ...)
+D) app.get('/user#id', ...)
+Answer: B) app.get('/user/:id', ...)
